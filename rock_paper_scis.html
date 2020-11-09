@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    function computerPlay(){
+        // return 'rock', 'paper', or 'scissors'
+        options = ['rock', 'paper', 'scissors']
+        selection = Math.random()*options.length
+        floored_selection = Math.floor(selection)
+
+        return options[floored_selection]
+    }
+
+    function selectionResult(playerSelection, computerSelection){
+
+        // if player_choice == computerSelection 
+        if (playerSelection == computerSelection){
+            console.log("TIE! Try again\n");
+            return 0;
+        }
+
+        // if player_choice > computerSelection
+        if (player_choice == 'rock' && computerSelection == 'scissors'){
+            console.log("You Win! Rock beats Scissors")
+            return 1;
+        }
+
+        if (player_choice == 'scissors' && computerSelection == 'paper'){
+            console.log("You Win! Scissors beats Paper")
+            return 1;
+        }
+
+        if (player_choice == 'paper' && computerSelection == 'rock'){
+            console.log("You Win! Paper beats Rock")
+            return 1;
+        }
+
+        // if player_choice < computerSelection
+        if (computerSelection == 'rock' && player_choice == 'scissors'){
+            console.log("You Lose! Rock beats Scissors")
+            return -1;
+        }
+
+        if (computerSelection == 'scissors' && player_choice == 'paper'){
+            console.log("You Lose! Scissors beats Paper")
+            return -1;
+        }
+
+        if (computerSelection == 'paper' && player_choice == 'rock'){
+            console.log("You Lose! Paper beats Rock")
+            return -1;
+        }
+    }
+
+    function game(){
+        // welcome
+        console.log("Welcome to Rock Paper Scissors! \n")
+
+        scores_hash = {'player': 0, 'computer':0}
+        
+        // game starting
+        let game_count = 0;
+        while (game_count < 5){
+            player_choice = prompt("Please input your selection: ").toLowerCase();
+            computer_choice = computerPlay();
+            
+            game = selectionResult(player_choice, computer_choice)
+            
+            if (game == 0){
+                game_count += 0
+            }
+
+            if (game==1){
+                scores_hash['player'] += 1
+                game_count += 1
+            } else if (game == -1) {
+                scores_hash['computer'] += 1
+                game_count += 1
+            }
+        }
+
+        // return winner when either player or computer gets to 5
+        
+        if(scores_hash['computer'] > scores_hash['player']){
+            console.log("Computer wins with a score of " + scores_hash['computer'] + ' to ' + scores_hash['player'] + '!!!')
+        } else {
+            console.log("You win with a score of " + scores_hash['player'] + " to " + scores_hash['computer'] + '!!!')
+        }
+
+        return 0;
+    }
+
+  </script>
+</body>
+</html>
